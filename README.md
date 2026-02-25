@@ -1,6 +1,6 @@
 # UX Design in the Open Home Foundation
 
-This repository is the central place for UX design within the Open Home Foundation.  
+This repository is the home of UX design within the Open Home Foundation and serves as the central place for all UX collaboration and direction.
 It is fully open and welcomes contributions from designers, researchers, writers, and accessibility experts.
 
 ## Purpose
