@@ -16,6 +16,7 @@ It is fully open and welcomes contributions from designers, researchers, writers
 - [**Discussions**](https://github.com/OpenHomeFoundation/ux-design/discussions) are used for proposals, feedback, and research.
 - Major decisions are summarized and linked to relevant board items.
 - Implemented designs are linked back to product repositories.
+- The [**Home Assistant Design Kit**](https://www.figma.com/community/file/1697311104929761103/home-assistant-design-kit) on Figma Community is the official Figma library for the Home Assistant interface. The [design-kit](design-kit/) folder has its manual and the tools to update it.
 
 Typical flow:
 
