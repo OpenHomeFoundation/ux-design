@@ -159,7 +159,7 @@ What is automatic and what is not:
 | Changelog row, cover version | Merging the branch, publishing the library, publishing to Community |
 | Diff report and frontend issues found (missing tokens, dangling references) | Deciding whether a frontend issue should be filed |
 
-Trigger: a scheduled check once a week on the releases list is enough; frontend releases ship roughly monthly with patch releases in between, and only tag-level changes to the theme files matter. The check compares the latest tag with the version on the cover and starts a run when they differ. A colleague can also start a run by hand with the prompt in the manual.
+Trigger: the Design kit release check workflow in this repo runs every Monday. It compares the latest full frontend release with `latestReleaseTag` in `design-kit/state.json`; beta releases do not count. When they differ, it opens an issue with the token changes, the icon version and the changed source files, labeled `design-kit` and assigned to the kit maintainer. The workflow cannot edit Figma, so the run itself is started by a person with the prompt in the manual. A colleague can also start a run without an issue.
 
 ## Maintenance manual
 

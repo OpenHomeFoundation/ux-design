@@ -16,7 +16,7 @@ This folder holds what you need to maintain the kit. To use the kit, duplicate i
 | [MANUAL.md](MANUAL.md) | Decisions, sources of truth, page conventions, and the maintenance steps |
 | [CHANGELOG.md](CHANGELOG.md) | One entry per kit version, with the frontend commit it matches |
 | [state.json](state.json) | Node IDs of every page, section, component set, variable, style and icon in the team library, plus the frontend issues found |
-| [scripts/](scripts/) | Token extraction, the state patch helper and the Code Connect generator |
+| [scripts/](scripts/) | Token extraction, the release report, the state patch helper and the Code Connect generator |
 | [code-connect/](code-connect/) | Code Connect templates, ready but not published |
 
 The Claude Code skill that updates the kit is in [.claude/skills/ha-figma-kit](../.claude/skills/ha-figma-kit/SKILL.md).
@@ -48,6 +48,9 @@ python3 design-kit/scripts/extract_tokens.py <frontend clone> tokens.json
 # Map them to Figma collections, modes and scopes, and list frontend issues
 python3 design-kit/scripts/plan_tokens.py tokens.json plan.json
 
+# Write the release report that the release check puts in its issue
+python3 design-kit/scripts/release_report.py <old frontend> <new frontend> old.json new.json <old ref> <new tag>
+
 # Merge a JSON patch into state.json
 python3 design-kit/scripts/patch_state.py design-kit/state.json patch.json
 
@@ -56,6 +59,12 @@ python3 design-kit/scripts/gen_code_connect.py design-kit/code-connect
 ```
 
 To see what changed between two frontend releases, run `extract_tokens.py` on both and compare the two JSON files.
+
+## Release check
+
+A workflow, [Design kit release check](../.github/workflows/design-kit-release-check.yml), runs every Monday and on demand from the Actions tab. When the latest full frontend release differs from `latestReleaseTag` in `state.json`, it opens an issue with the label `design-kit`, assigned to `matthiasdebaat`. Beta releases do not count. The issue lists the token changes, the `@mdi/svg` version and the changed source files, with a to-do list for the update. It opens one issue per release.
+
+The workflow does not change the Figma file: Figma's REST API cannot edit components, and the Figma connector signs in as a person. A designer runs the skill, reviews the kit, and publishes it. After each kit update, set `latestReleaseTag` and `frontendCommit` in `state.json` to the new release. To assign someone else, change `ASSIGNEE` in the workflow.
 
 ## Request a change
 
