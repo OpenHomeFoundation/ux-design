@@ -36,6 +36,8 @@ Ask for what you do not have. Do not guess.
 
 ### Reconcile a frontend release
 
+If a `design-kit` issue exists for the release, read it first: it already lists the token changes and the changed source files.
+
 1. In the frontend clone, run `design-kit/scripts/extract_tokens.py` at the commit in `state.json` (`frontendCommit`) and at the new tag. Compare the two outputs.
 2. Run `plan_tokens.py` on the new output to get collections, aliases and the frontend issues.
 3. Diff the documented components: the contributor component pages and `src/components` files against the sets in `state.json`.
@@ -65,7 +67,7 @@ Figma refuses to publish a library with either problem.
 
 ## Close out
 
-1. Patch `design-kit/state.json` with the new IDs, the frontend commit and the completed steps (`scripts/patch_state.py`).
+1. Patch `design-kit/state.json` with the new IDs, `frontendCommit`, `latestReleaseTag` and the completed steps (`scripts/patch_state.py`). The release check compares `latestReleaseTag` with the latest frontend release.
 2. Add the change to `design-kit/CHANGELOG.md` and to the Changelog page in Figma.
 3. Add a row to the decisions table in `design-kit/MANUAL.md` for every new decision.
 4. Update the Getting started page in Figma when pages or groups change.
