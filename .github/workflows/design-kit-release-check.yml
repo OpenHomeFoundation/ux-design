@@ -1,0 +1,103 @@
+name: Design kit release check
+
+# Opens an issue when the frontend has a release that the design kit does not
+# match yet. The issue lists token changes and changed source files, so a
+# designer can run the ha-figma-kit skill, review the kit, and publish it.
+
+on:
+  schedule:
+    - cron: "17 7 * * 1" # Mondays 07:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  ASSIGNEE: matthiasdebaat
+  LABEL: design-kit
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compare the latest frontend release with the kit
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          latest=$(gh api repos/home-assistant/frontend/releases/latest --jq .tag_name)
+          kit=$(jq -r .latestReleaseTag design-kit/state.json)
+          base=$(jq -r .frontendCommit design-kit/state.json)
+          echo "latest=$latest" >> "$GITHUB_OUTPUT"
+          echo "base=$base" >> "$GITHUB_OUTPUT"
+          if [ "$latest" = "$kit" ]; then
+            echo "The kit matches $latest."
+            echo "open=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          title="Design kit: frontend $latest"
+          existing=$(gh issue list --state all --label "$LABEL" --search "\"$title\" in:title" --json number --jq length)
+          if [ "$existing" != "0" ]; then
+            echo "An issue for $latest exists already."
+            echo "open=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "title=$title" >> "$GITHUB_OUTPUT"
+          echo "open=true" >> "$GITHUB_OUTPUT"
+
+      - name: Check out the frontend the kit was built from
+        if: steps.release.outputs.open == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: home-assistant/frontend
+          ref: ${{ steps.release.outputs.base }}
+          path: frontend-old
+          persist-credentials: false
+          sparse-checkout: |
+            src/resources/theme
+            src/components
+            src/layouts
+            src/panels/lovelace/cards
+            src/panels/lovelace/views
+
+      - name: Check out the new frontend release
+        if: steps.release.outputs.open == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: home-assistant/frontend
+          ref: ${{ steps.release.outputs.latest }}
+          path: frontend-new
+          persist-credentials: false
+          sparse-checkout: |
+            src/resources/theme
+            src/components
+            src/layouts
+            src/panels/lovelace/cards
+            src/panels/lovelace/views
+
+      - name: Write the report
+        if: steps.release.outputs.open == 'true'
+        env:
+          BASE: ${{ steps.release.outputs.base }}
+          LATEST: ${{ steps.release.outputs.latest }}
+        run: |
+          python3 design-kit/scripts/extract_tokens.py frontend-old old-tokens.json
+          python3 design-kit/scripts/extract_tokens.py frontend-new new-tokens.json
+          python3 design-kit/scripts/release_report.py frontend-old frontend-new old-tokens.json new-tokens.json \
+            "$BASE" "$LATEST" > report.md
+
+      - name: Open the issue
+        if: steps.release.outputs.open == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: ${{ steps.release.outputs.title }}
+        run: |
+          gh label create "$LABEL" --color 18BCF2 --description "Home Assistant Design Kit" 2>/dev/null || true
+          gh issue create \
+            --title "$TITLE" \
+            --body-file report.md \
+            --label "$LABEL" \
+            --assignee "$ASSIGNEE"
