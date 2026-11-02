@@ -50,7 +50,9 @@ If a `design-kit` issue exists for the release, read it first: it already lists 
 2. Read the source file: properties, states, sizes, slots, CSS custom properties.
 3. Build the component set in a new section on the right group page, with Guidelines, Examples (Light and Dark) and the set, as in conventions.
 4. Wire component properties (text, boolean, instance swap) and expose nested instances that people need to change.
-5. Add a Code Connect template with `scripts/gen_code_connect.py`, if the component maps to one element.
+5. Add the Dev Mode annotation (see conventions).
+6. If a selector renders the component, add a Selector variant and update the "All selector types" table (see conventions).
+7. Add a Code Connect template with `scripts/gen_code_connect.py`, if the component maps to one element.
 
 ### Add an example screen
 
@@ -58,12 +60,13 @@ Build it in the section of its window size class on the Examples page, from inst
 
 ### Pre-publish check
 
-Run the `checkProperties` helper on every page except Icons. Fix every hit:
+Run the `checkProperties` and `checkIcons` helpers on every page except Icons. Fix every hit:
 
 - A non-variant property that no layer references: bind it or delete it.
 - A property name that is also a variant axis name: rename the property, for example `Description text`.
+- An icon that overflows its instance: reset it as in figma-gotchas.
 
-Figma refuses to publish a library with either problem.
+Figma refuses to publish a library with either of the first two problems. Also list the main components without an annotation.
 
 ## Close out
 

@@ -20,5 +20,7 @@ def deep(a, b):
 
 
 deep(d, json.load(open(patch_path)))
-json.dump(d, open(state_path, 'w'), indent=1)
+with open(state_path, 'w') as f:
+    json.dump(d, f, indent=1)
+    f.write('\n')
 print('state ok; last steps:', d['completedSteps'][-3:])

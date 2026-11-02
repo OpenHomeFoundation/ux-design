@@ -40,6 +40,18 @@ The section is 40px larger than its content on the right and bottom.
 - Optional actions are booleans on a fixed group (for example Action 1 to Action 3), not separate variants.
 - Tints and scrims are overlay rectangles with layer opacity.
 
+## Annotations
+
+- One Dev Mode annotation on every main component or component set: `node.annotations = [{ labelMarkdown }]`, no category.
+- Paragraphs start with a bold lead, then short sentences: `**Target size**`, `**Keyboard**`, `**Focus**`, `**Screen readers**`, `**Narrow screens**`, `**States**`. Add others when the component needs them, like `**Timing**` for the toast.
+- Take the facts from the contributor page, or from the source file when there is no page. State accessibility gaps in the source as they are.
+
+## Selectors
+
+- The Selector set has one variant per kind of control, not one per selector type.
+- The "All selector types" table below the set maps every file in `src/components/ha-selector` to its kit component and variant. Map a type by the element its picker renders: `ha-generic-picker` is Picker, `ha-select` is Select.
+- When a new component is what a selector renders, add a Selector variant with an instance of it and update the table.
+
 ## Examples page
 
 - One section per window size class, stacked: Wide (1440 x 900, sidebar expanded), Docked (1024 x 768, sidebar collapsed), Narrow (390 x 844, no sidebar).
