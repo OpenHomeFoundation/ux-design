@@ -2,6 +2,33 @@
 
 One entry per kit version, newest first. The Changelog page in the Figma file has the same text.
 
+## Kit 2, November 2026
+
+Built from the frontend at `dev` 316043960c (`20260930.0-621-g316043960c`), the same as kit 1.
+
+### Input
+
+- Select, time input, duration input, date input with its date picker, button toggle group, labeled slider (plain and color temperature track), color input, code editor (YAML and template, with the codemirror syntax colors), and file upload.
+
+### Pickers
+
+- Picker: the generic picker field, with an icon or a color swatch.
+- Icon picker, chip (input and assist), target picker with target rows, and multi-picker list.
+
+### Forms
+
+- The selector set grows from 9 to 24 variants, one per kind of control.
+- A table maps all 61 selector types of the frontend to their kit component.
+
+### App shell
+
+- Notification badge: the count on sidebar entries. It is not the same as Badge.
+- Sidebar item shows its count with a nested Notification badge. Set the count on that instance; the Badge count property is gone.
+
+### Annotations
+
+- Dev Mode annotations for every new component, and for the tab, tab bar, data table header and row, card header, divider, toast and dialog header.
+
 ## Kit 1, October 2026
 
 Built from the frontend at `dev` 316043960c (`20260930.0-621-g316043960c`).

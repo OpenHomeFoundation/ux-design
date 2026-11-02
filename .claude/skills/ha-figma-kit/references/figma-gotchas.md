@@ -1,6 +1,6 @@
 # Figma Plugin API gotchas
 
-Lessons from building kit 1. Each one cost at least one failed or wrong run.
+Lessons from building kits 1 and 2. Each one cost at least one failed or wrong run.
 
 ## Calls and pages
 
@@ -32,13 +32,20 @@ Lessons from building kit 1. Each one cost at least one failed or wrong run.
 - `resize()` sets the sizing modes to fixed. Set `layoutSizingHorizontal` or `layoutSizingVertical` to `'HUG'` or `'FILL'` after the resize.
 - `HUG` works only on an auto layout frame or a text child of one. `FILL` works only on a child of an auto layout frame. Append the node first.
 - An auto layout frame can report a stale size. Set `layoutMode = 'NONE'`, then back to its direction, to force a new measurement.
+- You cannot insert children into a nested instance. Skip nodes inside instances when you walk a cloned set to add layers.
+- `isExposedInstance = true` throws for an instance without component properties of its own or below it. Wrap it in try/catch.
 - A detached copy is a frame, not a component. Compose examples from instances in a plain frame instead of detaching.
 
 ## Shapes and icons
 
 - `vectorPaths` accept only the commands M, L, C, Q and Z. Draw arcs as cubic Béziers of at most 90° each, with k = 4/3 · tan(θ/4). Figma moves the node to the bounding box of the path.
 - To recolor an MDI icon instance, set the fills of its `VECTOR` named `icon`. An Icon button also has a `FRAME` named `icon`; give that frame `fills = []`, or it shows as a black square.
+- An icon swapped into a nested instance of a different size (a 16px button slot) can keep the 24px vector, which then overflows into the label. Positions of nested layers cannot be overridden (`relative-transform`). Set the instance swap property to another icon and back with `setProperties`; the icon is then instantiated at the slot size. `checkIcons` in helpers finds the overflow.
 - Frames that hold menus, dialogs or picker lists in Examples need `clipsContent = false`, or their shadows are cut off.
+
+## Return values
+
+- A `use_figma` result above 48 KB fails, and the call's canvas changes are not kept. Return counts and short samples, not whole trees or full annotation texts.
 
 ## Images
 

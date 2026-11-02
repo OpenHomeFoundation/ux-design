@@ -239,3 +239,15 @@ function checkProperties(page) {
   }
   return out;
 }
+
+// Run once per page (skip Icons). Returns MDI icon instances whose vector
+// overflows the instance, which happens after a swap into a smaller slot.
+function checkIcons(page) {
+  const out = [];
+  for (const inst of page.findAllWithCriteria({ types: ['INSTANCE'] })) {
+    if (!(inst.mainComponent?.name || '').startsWith('Icons / mdi')) continue;
+    const v = inst.children.find((c) => c.type === 'VECTOR');
+    if (v && (v.x + v.width > inst.width + 1 || v.y + v.height > inst.height + 1)) out.push(inst.id);
+  }
+  return out;
+}
