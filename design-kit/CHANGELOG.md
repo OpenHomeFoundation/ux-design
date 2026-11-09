@@ -28,6 +28,7 @@ Built from the frontend at `dev` 316043960c (`20260930.0-621-g316043960c`), the 
 ### Annotations
 
 - Dev Mode annotations for every new component, and for the tab, tab bar, data table header and row, card header, divider, toast and dialog header.
+- Dev Mode annotations for the entity, device and area picker lists and the state icon.
 
 ## Kit 1, October 2026
 
