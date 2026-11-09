@@ -1225,7 +1225,11 @@
   "kit2-notification-badge",
   "kit2-selector-24-variants-and-type-table",
   "kit2-annotations",
-  "kit2-changelog-and-page-texts"
+  "kit2-changelog-and-page-texts",
+  "kit2-annotations-kit1-lists",
+  "kit2-changelog-kit1-published",
+  "kit2-getting-started-version-text",
+  "kit2-prepublish-check"
  ],
  "legacySkipped": [
   "--rgb-primary-color: rgb triplet, not a colour",
