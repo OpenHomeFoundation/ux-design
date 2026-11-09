@@ -1,6 +1,6 @@
 # Figma Plugin API gotchas
 
-Lessons from building kits 1 and 2. Each one cost at least one failed or wrong run.
+Lessons from building kits 1 to 3. Each one cost at least one failed or wrong run.
 
 ## Calls and pages
 
@@ -26,6 +26,8 @@ Lessons from building kits 1 and 2. Each one cost at least one failed or wrong r
 - Changing a variant with `setProperties` can reset text overrides on the instance. Set the text properties again afterwards.
 - Never read `componentPropertyDefinitions` on a variant. Read it on the set.
 - New instances in a plain frame inherit the main component's constraints. Set `constraints = {horizontal: 'MIN', vertical: 'MIN'}` before you resize the parent.
+- A boolean property cannot be inverted, so one boolean cannot hide one layer and show another. To swap an icon for a picture, put both in a fixed-size frame and stack the picture on top, bound to the boolean.
+- An instance cloned from another page into a new component keeps its explicit variable modes, like the Button size mode. Cloning a configured button is faster than building one.
 
 ## Layout and sizing
 
@@ -35,6 +37,7 @@ Lessons from building kits 1 and 2. Each one cost at least one failed or wrong r
 - You cannot insert children into a nested instance. Skip nodes inside instances when you walk a cloned set to add layers.
 - `isExposedInstance = true` throws for an instance without component properties of its own or below it. Wrap it in try/catch.
 - A detached copy is a frame, not a component. Compose examples from instances in a plain frame instead of detaching.
+- A component set without auto layout does not grow when you add a variant. Resize it with `resizeWithoutConstraints`, then move the nodes below it and grow the section by the same amount.
 
 ## Shapes and icons
 

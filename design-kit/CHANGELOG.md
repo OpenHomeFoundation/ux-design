@@ -2,6 +2,31 @@
 
 One entry per kit version, newest first. The Changelog page in the Figma file has the same text.
 
+## Kit 3, November 2026
+
+Built from the frontend release `20261028.5` (e32bc0696e). No token changes, and `@mdi/svg` is still 7.4.47.
+
+### Pickers
+
+- Target row: the Picture boolean on Type=Entity shows the entity picture, like a person, in a 24px circle instead of the state icon.
+- Chip annotation: the focus outline follows the full shape of the chip.
+
+### Forms
+
+- Selector: the new variant Select (multiple) shows the chosen options as chips in a field, with an inline Add button.
+- The "All selector types" table maps select to Select (multiple) as well.
+
+### Dashboard cards
+
+- Gauge card annotation: the card needs at least 2 rows, and the dial fits the card height in a sections view.
+- Entities card annotation: under a title, a section row at the top keeps its divider.
+
+### Checked, no change
+
+- Device picker, target picker and target exclusions: the frontend changes are refactors or logic in core. The rows look the same.
+- Data table group headers, tab bar and tile card: no visible or accessibility change in this release.
+- Picker lists: the section filter chips now have an aria-label. The kit lists show no section chips.
+
 ## Kit 2, November 2026
 
 Built from the frontend at `dev` 316043960c (`20260930.0-621-g316043960c`), the same as kit 1.

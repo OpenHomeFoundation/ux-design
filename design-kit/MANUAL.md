@@ -69,6 +69,17 @@ Taken after kit 1, up to 2 November 2026. Where they differ from kit 1, these de
 | Kit version in the file | The Changelog page is the one place that shows the kit version. The cover keeps only "DESIGN KIT", and the Getting started page points to the Changelog for the version. Where this manual says the cover shows the version, this decision wins. |
 | Picker list annotations | The entity, device and area picker lists carry their own annotation, separate from the picker field. It adds a Size lead (width and max height of the popover) and states the gap in the source: focus stays in the search field and the highlighted row is not linked with aria-activedescendant. |
 
+## Decisions made while building kit 3
+
+Taken on 9 November 2026, for frontend release 20261028.5. Where they differ from earlier decisions, these win.
+
+| Topic | Decision |
+| --- | --- |
+| Where kit 3 was built | In the main file, not on a Figma branch named after the tag, because the Figma MCP cannot create branches. Nothing changes for people until the library is published. |
+| Entity pictures in target rows | Target row Type=Entity has a Picture boolean. The 24px round picture sits on top of the state icon in a 24px "leading" frame, because a boolean cannot hide one layer and show another. The example uses the person picture of User badge. |
+| Select (multiple) | A new Selector variant, not a change to Select (dropdown). The label is 14px medium above the field. The field has the form background, a 1px neutral bottom line, small top corners and 12px padding. It holds selected input chips and the Add button (size s, filled, plus icon), wrapping with 8px gaps. |
+| Changes without a visible effect | Gauge card height, the entities card divider and the chip container go into the annotations, not into new variants or examples. Refactors that only drop `hass` and logic that moved to core are left out of the kit. |
+
 ## Sources of truth
 
 Every value in the kit traces to one file in the frontend repo or one page on the contributor site. The reconciliation run reads these and nothing else, so the list below is also the list of what triggers an update.
