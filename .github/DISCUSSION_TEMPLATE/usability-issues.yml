@@ -1,0 +1,56 @@
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for something that works as built, but is confusing, inconsistent or hard to use. Something broken or showing an error? Open an issue in the project's own repo instead.
+
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: The project and the screen or feature.
+      placeholder: Home Assistant, Settings > System > Backups
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what happened, and what it stops you from doing. Describe the problem only, the fix comes later.
+      placeholder: When I switch off a backup location, old backups there still get deleted. I lost backups I wanted to keep.
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: What you're trying to achieve
+      description: The outcome you need, not how to get there.
+      placeholder: Keep backups on my NAS under my own retention, while Home Assistant manages its local ones.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or recording
+      description: Help others see what you mean without your setup.
+    validations:
+      required: false
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea for a fix
+      description: Optional. Share your solution here. We'll look at other solutions too, so it works for more people.
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: Home Assistant 2026.11.1
+    validations:
+      required: false
