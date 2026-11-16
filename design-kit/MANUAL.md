@@ -79,6 +79,7 @@ Taken on 9 November 2026, for frontend release 20261028.5. Where they differ fro
 | Entity pictures in target rows | Target row Type=Entity has a Picture boolean. The 24px round picture sits on top of the state icon in a 24px "leading" frame, because a boolean cannot hide one layer and show another. The example uses the person picture of User badge. |
 | Select (multiple) | A new Selector variant, not a change to Select (dropdown). The label is 14px medium above the field. The field has the form background, a 1px neutral bottom line, small top corners and 12px padding. It holds selected input chips and the Add button (size s, filled, plus icon), wrapping with 8px gaps. |
 | Changes without a visible effect | Gauge card height, the entities card divider and the chip container go into the annotations, not into new variants or examples. Refactors that only drop `hass` and logic that moved to core are left out of the kit. |
+| A release without kit changes | When a frontend release changes nothing the kit shows, the kit version stays the same and nothing is published. state.json takes the new `frontendCommit` and `latestReleaseTag`, so the release check does not open the issue again, and CHANGELOG.md notes the check under the current kit. The Changelog page in Figma is not changed. First used for 20261028.6. |
 
 ## Sources of truth
 

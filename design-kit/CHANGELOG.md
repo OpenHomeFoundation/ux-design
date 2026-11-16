@@ -26,6 +26,7 @@ Built from the frontend release `20261028.5` (e32bc0696e). No token changes, and
 - Device picker, target picker and target exclusions: the frontend changes are refactors or logic in core. The rows look the same.
 - Data table group headers, tab bar and tile card: no visible or accessibility change in this release.
 - Picker lists: the section filter chips now have an aria-label. The kit lists show no section chips.
+- Frontend release `20261028.6` (92bcd97390), checked on November 16, 2026: the only change for the kit files is a Safari scrolling fix for the actions on data table group headers. The kit shows no group headers, so kit 3 matches this release too.
 
 ## Kit 2, November 2026
 
