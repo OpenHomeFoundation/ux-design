@@ -27,6 +27,7 @@ Built from the frontend release `20261028.5` (e32bc0696e). No token changes, and
 - Data table group headers, tab bar and tile card: no visible or accessibility change in this release.
 - Picker lists: the section filter chips now have an aria-label. The kit lists show no section chips.
 - Frontend release `20261028.6` (92bcd97390), checked on November 16, 2026: the only change for the kit files is a Safari scrolling fix for the actions on data table group headers. The kit shows no group headers, so kit 3 matches this release too.
+- Frontend releases `20261028.7` and `20261028.8` (1ea5f1ab4f), checked on November 23, 2026: camera streams stop right away when the companion apps hide them, the MQTT settings card is as wide as other cards, and the weather forecast handles 0°. Nothing the kit shows changes, so kit 3 matches these releases too.
 
 ## Kit 2, November 2026
 
