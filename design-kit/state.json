@@ -1,7 +1,7 @@
 {
  "kitVersion": "20261028.5 / kit 3",
- "frontendCommit": "92bcd97390e7f684df4bf3738aec812ff427d46e",
- "latestReleaseTag": "20261028.6",
+ "frontendCommit": "1ea5f1ab4f487eee3e4042099d3bc8806e0c68fa",
+ "latestReleaseTag": "20261028.8",
  "fileLocation": "Open Home Foundation Figma team, file \"Home Assistant Design Kit\" (ask a team admin for the link)",
  "entities": {
   "collections": {
@@ -1238,7 +1238,8 @@
   "kit3-annotations",
   "kit3-changelog-page",
   "kit3-prepublish-check",
-  "check-20261028.6-no-kit-change"
+  "check-20261028.6-no-kit-change",
+  "check-20261028.8-no-kit-change"
  ],
  "legacySkipped": [
   "--rgb-primary-color: rgb triplet, not a colour",
